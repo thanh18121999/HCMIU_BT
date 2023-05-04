@@ -1,56 +1,42 @@
 import React, { useState, useEffect } from "react";
-import { Button, Table, Modal, Space, message } from "antd";
+import { Button, Modal, Table, Space, message } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import CreateArticle from "../components/CreateArticle";
-import EditArticle from "../components/EditArticle";
-import { GetArticle, DeleteArticle } from "../Service";
+import CreateBlog from "../components/CreateBlog";
+import EditBlog from "../components/EditBlog";
+import { GetBlog, DeleteBlog } from "../Service";
 
-const ArticleManagement = () => {
-  const [articleList, setArticleList] = useState([]);
-  async function getArticleListAPI() {
-    var menusarticle = JSON.parse(sessionStorage.getItem("menus"));
-    var rolcode = sessionStorage.getItem("roleuser");
-    let res = await GetArticle(
-      menusarticle.map((x) => x.value),
-      rolcode
-    );
+const BlogManagement = () => {
+  const [blogList, setBlogList] = useState([]);
+  async function getBlogListAPI() {
+    let res = await GetBlog();
     if (res) {
-      setArticleList(
-        res.articlemenu.map((x, index) => ({
-          ...x.arc,
+      setBlogList(
+        res.responses.map((x, index) => ({
+          ...x,
           key: index,
           ordinal: index + 1,
-          menu: x.menuid,
-          menuname: x.menuname.join(", "),
-          user: x.name,
         }))
       );
     }
   }
-
   useEffect(() => {
-    getArticleListAPI();
+    getBlogListAPI();
   }, []);
-
-  async function deleteArticleAPI() {
-    let res = await DeleteArticle(dataDelete.id);
+  async function deleteBlogAPI() {
+    let res = await DeleteBlog(dataDelete.id);
     if (res == "DELETE_SUCCESSFUL") {
       setIsModalOpen(false);
-      getArticleListAPI();
+      getBlogListAPI();
       message.success("Xóa bài viết thành công");
-    } else if (res == "DELETE_FAIL_NOT_ARTICLE_CREATOR") {
+    } else if (res == "DELETE_FAIL_NOT_BLOG_OWNER") {
       setIsModalOpen(false);
-      message.error(
-        "Người dùng không phải chủ nhân của bài viết hoặc không có quyền xóa bài viết này"
-      );
+      message.error("Người dùng không phải chủ nhân của bài viết này");
     }
   }
-
   const [visibleEdit, setVisibleEdit] = useState(false);
   const [visibleNew, setVisibleNew] = useState(false);
   const [dataEdit, setDataEdit] = useState();
   const [dataDelete, setDataDelete] = useState();
-
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -60,6 +46,7 @@ const ArticleManagement = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
   const handleFormEdit = (e) => {
     setVisibleEdit(true);
     setDataEdit(e);
@@ -69,11 +56,11 @@ const ArticleManagement = () => {
   };
   const handleCancelEdit = () => {
     setVisibleEdit(false);
-    getArticleListAPI();
+    getBlogListAPI();
   };
   const handleCancelNew = () => {
     setVisibleNew(false);
-    getArticleListAPI();
+    getBlogListAPI();
   };
   const columns = [
     {
@@ -86,30 +73,7 @@ const ArticleManagement = () => {
       title: "Tiêu đề",
       dataIndex: "title",
       align: "center",
-      width: "30%",
-    },
-    {
-      title: "Menu",
-      dataIndex: "menu",
-      align: "center",
-      width: "30%",
-      render: (_, record) => {
-        if (record.language == "vn") {
-          return record.menuname + " (Tiếng việt)";
-        }
-        if (record.language == "en") {
-          return record.menuname + " (English)";
-        }
-      },
-    },
-    {
-      title: "Người đăng",
-      dataIndex: "idusercreate",
-      align: "center",
-      width: "20%",
-      render: (_, record) => {
-        return record.user;
-      },
+      width: "45%",
     },
     {
       title: "Ngày đăng",
@@ -119,6 +83,12 @@ const ArticleManagement = () => {
       render: (_, record) => {
         return record.createdate.split("T").join("\n");
       },
+    },
+    {
+      title: "Lượt thích",
+      dataIndex: "likes",
+      align: "center",
+      width: "15%",
     },
     {
       title: "",
@@ -170,6 +140,7 @@ const ArticleManagement = () => {
       },
     },
   ];
+
   return (
     <>
       <div
@@ -180,7 +151,7 @@ const ArticleManagement = () => {
         }}
       >
         <h1 className="text-secondary pt-3" style={{ fontSize: "2rem" }}>
-          Quản lý bài viết
+          Bài viết cá nhân
         </h1>
       </div>
       <div
@@ -191,10 +162,10 @@ const ArticleManagement = () => {
         }}
       >
         <h1 className="text-secondary pt-3" style={{ fontSize: "1.5rem" }}>
-          <div>Danh sách bài viết</div>
+          <div>Bài viết cá nhân</div>
         </h1>
         <Button type="primary" onClick={handleFormNew}>
-          Bài viết mới
+          Bài viết cá nhân mới
         </Button>
       </div>
       <div className="modalEditGroup">
@@ -206,7 +177,7 @@ const ArticleManagement = () => {
           onCancel={handleCancelEdit}
           footer={false}
         >
-          <EditArticle dataToUpdate={dataEdit} onCancel={handleCancelEdit} />
+          <EditBlog dataToUpdate={dataEdit} onCancel={handleCancelEdit} />
         </Modal>
       </div>
       <div className="py-2 mt-2">
@@ -218,7 +189,7 @@ const ArticleManagement = () => {
           pagination={{
             pageSize: 5,
           }}
-          dataSource={articleList}
+          dataSource={blogList}
         />
       </div>
       <div className="modalNewGroup">
@@ -226,11 +197,11 @@ const ArticleManagement = () => {
           title={<h5 className="text-secondary">Bài viết mới</h5>}
           centered
           visible={visibleNew}
-          width={930}
+          width={900}
           onCancel={handleCancelNew}
           footer={false}
         >
-          <CreateArticle onCancel={handleCancelNew} />
+          <CreateBlog onCancel={handleCancelNew} />
         </Modal>
       </div>
       <div className="modalDelete">
@@ -245,7 +216,7 @@ const ArticleManagement = () => {
             <Button type="primary" onClick={handleCancel}>
               Hủy
             </Button>
-            <Button type="primary" onClick={deleteArticleAPI}>
+            <Button type="primary" onClick={deleteBlogAPI}>
               Xác nhận
             </Button>
           </Space>
@@ -254,4 +225,4 @@ const ArticleManagement = () => {
     </>
   );
 };
-export default ArticleManagement;
+export default BlogManagement;

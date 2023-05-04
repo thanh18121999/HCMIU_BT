@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Button, Table, Modal, Space, message } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import CreateArticle from "../components/CreateArticle";
-import EditArticle from "../components/EditArticle";
+import CreatePage from "../components/CreatePage";
+import EditPage from "../components/EditPage";
 import { GetArticle, DeleteArticle } from "../Service";
 
-const ArticleManagement = () => {
+const PageManegement = () => {
   const [articleList, setArticleList] = useState([]);
   async function getArticleListAPI() {
-    var menusarticle = JSON.parse(sessionStorage.getItem("menus"));
+    var menuspage = JSON.parse(sessionStorage.getItem("menuspage"));
     var rolcode = sessionStorage.getItem("roleuser");
     let res = await GetArticle(
-      menusarticle.map((x) => x.value),
+      menuspage.map((x) => x.id),
       rolcode
     );
     if (res) {
@@ -27,11 +27,18 @@ const ArticleManagement = () => {
       );
     }
   }
+  sessionStorage.setItem(
+    "pageENAvailable",
+    articleList.filter((x) => x.language == "en").map((x) => parseInt(x.menu))
+  );
+  sessionStorage.setItem(
+    "pageVNAvailable",
+    articleList.filter((x) => x.language == "vn").map((x) => parseInt(x.menu))
+  );
 
   useEffect(() => {
     getArticleListAPI();
   }, []);
-
   async function deleteArticleAPI() {
     let res = await DeleteArticle(dataDelete.id);
     if (res == "DELETE_SUCCESSFUL") {
@@ -89,7 +96,7 @@ const ArticleManagement = () => {
       width: "30%",
     },
     {
-      title: "Menu",
+      title: "Trang",
       dataIndex: "menu",
       align: "center",
       width: "30%",
@@ -180,7 +187,7 @@ const ArticleManagement = () => {
         }}
       >
         <h1 className="text-secondary pt-3" style={{ fontSize: "2rem" }}>
-          Quản lý bài viết
+          Quản lý trang
         </h1>
       </div>
       <div
@@ -191,22 +198,22 @@ const ArticleManagement = () => {
         }}
       >
         <h1 className="text-secondary pt-3" style={{ fontSize: "1.5rem" }}>
-          <div>Danh sách bài viết</div>
+          <div>Danh sách trang</div>
         </h1>
         <Button type="primary" onClick={handleFormNew}>
-          Bài viết mới
+          Trang mới
         </Button>
       </div>
       <div className="modalEditGroup">
         <Modal
-          title={<h5 className="text-secondary">Chỉnh sửa bài viết</h5>}
+          title={<h5 className="text-secondary">Chỉnh sửa trang</h5>}
           centered
           visible={visibleEdit}
           width={800}
           onCancel={handleCancelEdit}
           footer={false}
         >
-          <EditArticle dataToUpdate={dataEdit} onCancel={handleCancelEdit} />
+          <EditPage dataToUpdate={dataEdit} onCancel={handleCancelEdit} />
         </Modal>
       </div>
       <div className="py-2 mt-2">
@@ -223,14 +230,14 @@ const ArticleManagement = () => {
       </div>
       <div className="modalNewGroup">
         <Modal
-          title={<h5 className="text-secondary">Bài viết mới</h5>}
+          title={<h5 className="text-secondary">Trang mới</h5>}
           centered
           visible={visibleNew}
           width={930}
           onCancel={handleCancelNew}
           footer={false}
         >
-          <CreateArticle onCancel={handleCancelNew} />
+          <CreatePage onCancel={handleCancelNew} />
         </Modal>
       </div>
       <div className="modalDelete">
@@ -240,7 +247,7 @@ const ArticleManagement = () => {
           onCancel={handleCancel}
           footer={false}
         >
-          <p>Xác nhận xóa bài viết với tiêu đề "{dataDelete?.title}"?</p>
+          <p>Xác nhận xóa trang với tiêu đề "{dataDelete?.title}"?</p>
           <Space style={{ display: "flex", justifyContent: "flex-end" }}>
             <Button type="primary" onClick={handleCancel}>
               Hủy
@@ -254,4 +261,4 @@ const ArticleManagement = () => {
     </>
   );
 };
-export default ArticleManagement;
+export default PageManegement;
