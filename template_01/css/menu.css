@@ -1,0 +1,177 @@
+/* .cls-menu *[multi="true"]:before, .cls-menu *[multileft="true"]:before, .cls-menu *[multiright="true"]:before {
+    font-family: "Font Awesome 6 Free";
+    content: '\f09e';
+    font-weight: 900;
+    font-size: 0.9em;
+    padding-right: 0.3em;
+}
+.cls-menu *[single="true"]:before {
+    font-family: "Font Awesome 6 Free";
+    content: '\f0c6';
+    font-weight: 900;
+    font-size: 0.9em;
+    padding-right: 0.3em;
+}
+.cls-menu *[webpage="true"]:before {
+    font-family: "Font Awesome 6 Free";
+    content: '\f57e';
+    font-weight: 900;
+    font-size: 0.9em;
+    padding-right: 0.3em;
+}
+.cls-menu *[html="true"]:not(*[page="home"])::before {
+    font-family: "Font Awesome 6 Free";
+    content: '\f1d8';
+    font-weight: 900;
+    font-size: 0.9em;
+    padding-right: 0.3em;
+} */
+
+.menu-title {
+    color: var(--white);
+    margin: 0;
+    border: none;
+    pointer-events: none !important;
+    text-transform: capitalize !important;
+}
+
+/* level 1 */
+
+.menu .menu-part>.menu-part-level1>* {
+    padding: 0.3em 0.6rem;
+    position: relative;
+    margin: 0;
+    font-size: 1.1em;
+}
+
+.menu .menu-part>.menu-part-level1>div:hover {
+    background-color: var(--color-dynamic-1);
+    color: var(--white);
+    cursor: pointer;
+}
+
+.menu .menu-part>.menu-part-level1>div>span {
+    text-transform: uppercase !important;
+}
+
+/* level 2 */
+.menu .menu-part .menu-part-level1>div>.menu-part-level2 {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 2.1em;
+    z-index: 2;
+    min-width: 10rem;
+    font-size: 0.9em;
+    padding: 0.5em 0.8em;
+    white-space: nowrap;
+    color: var(--color-dynamic-1);
+    border-bottom-right-radius: 1.5em;
+    border-bottom-left-radius: 0;
+    background-color: var(--color-dynamic-3-blur-95);
+}
+
+.menu .menu-part .menu-part-level1>div.on-left>.menu-part-level2 {
+    right: 0;
+    left: unset;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 1.5em;
+}
+
+.menu .menu-part .menu-part-level1>*:not(*[webpage="true"]):hover>.menu-part-level2 {
+    display: block;
+}
+
+*[reset="true"]:hover {
+    cursor: pointer;
+}
+
+*[webpage="true"]>*:not(span) {
+    display: none;
+}
+
+.menu .menu-part .menu-item:hover {
+    /* color: var(--white); */
+    color: var(--color-dynamic-4);
+    border-left-color: var(--color-dynamic-4) !important;
+    border-right-color: transparent;
+    cursor: pointer;
+    text-shadow: none;
+}
+
+.menu-item,
+.menu-title-under {
+    text-transform: capitalize !important;
+    /* text-shadow: 0.02em 0 #fff, -0.02em 0 #fff, 0 0.02em #fff, 0 -0.02em #fff,
+    0.01em 0.01em #fff, -0.01em -0.01em #fff, 0.01em -0.01em #fff, -0.01em 0.01em #fff; */
+}
+
+.menu-part-level1 > .menu-item {
+    text-transform: uppercase !important;
+}
+
+.menu .menu-part .menu-item:not(.menu-part-level1 > div),
+.menu .menu-part .menu-title-under {
+    font-size: 0.9em;
+    margin-left: 0.6em;
+    border-left: var(--border);
+    border-left-color: var(--color-dynamic-1);
+    border-left-style: dotted;
+    border-left-width: 0.15em;
+    padding: 0.5em;
+}
+
+.menu .menu-part .menu-title-under:hover {
+    border-left-color: var(--white);
+}
+
+.menu .menu-part .menu-title-under:hover>span {
+    color: var(--white);
+}
+
+.sticky-menu {
+    position: fixed;
+    top: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.sticky-menu #sub-menu {
+    margin: 0 !important;
+}
+
+.sticky-menu #logo {
+    display: none;
+}
+
+.sticky-menu #menu-map {
+    display: none;
+}
+
+.sticky-menu #menu-part {
+    color: var(--white);
+}
+
+#menu.sticky-menu {
+    right: 0;
+    z-index: 2;
+}
+
+#menu.sticky-menu .menu-part>.menu-part-level1>*:hover {
+    background-color: var(--color-dynamic-3-blur-50);
+}
+
+#menu-mini.sticky-menu {
+    justify-content: flex-start !important;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.sticky-menu #menu-lang {
+    z-index: 2;
+}
+
+.sticky-menu #menu-bar {
+    margin-left: 2em !important;
+}

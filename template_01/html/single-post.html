@@ -1,0 +1,151 @@
+<!-- <link href="template_01/css/shared.css?v=1.0.0.16" rel="stylesheet" /> -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" /> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script> -->
+<!-- <script src="template_01/js/sitemap.js"></script> -->
+<link href="template_01/css/suneditor.min.css?v=1.0.0.19" rel="stylesheet" />
+
+<style>
+    #single-post {
+        padding: 2em 8vw;
+    }
+
+    #single-post #direct {
+        margin-top: 3em;
+    }
+
+    #single-post #direct>div:hover {
+        cursor: pointer;
+        color: var(--color-dynamic-1);
+    }
+
+    #single-post #direct .title {
+        font-size: 0.9em;
+        padding: 0 0.5em;
+    }
+
+    #single-post #content #title {
+        color: var(--color-dynamic-1);
+    }
+
+    #single-post #content #date {
+        text-align: right;
+    }
+
+    #single-post #content .content.sun-editor-editable figure img {
+        max-width: 100%;
+        height: auto;
+    }
+</style>
+
+<div id="single-post" class="divcontent">
+    <div id="content"></div>
+    <div id="direct" class="cls-flex">
+        <div id="prev" class="postclick"><span><i class="fa-solid fa-arrow-left"></i></span><span class="title"></span>
+        </div>
+        <div id="next" class="postclick"><span class="title"></span><span><i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        loadSinglePost();
+        $('#single-post .postclick').click(function () {
+            let postid = $(this).attr('postid');
+            if (postid === "0") {
+                let postit = 'đầu tiên';
+                if ($(this).attr('id') === 'next') postit = "cuối cùng";
+                Swal.fire({
+                    position: 'center',
+                    icon: 'warning',
+                    title: 'Đây đã là bài viết ' + postit,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+            else {
+                changeURIMenuScroll(false, false, postid);
+                loadSinglePost();
+            }
+        });
+    });
+    function loadSinglePost() {
+        // localStorage.setItem("sessionpost", '{"message":"success","statuscode":200,"responses":[{"id":2,"title":"Tầm Nhìn","articlecontent":"<h1><strong>TRIẾT LÝ GIÁO DỤC CỦA KHOA CÔNG NGHỆ SINH HỌC TRƯỜNG ĐẠI HỌC QUỐC TẾ (BT.IU)</strong></h1><p>Với triết lý giáo dục TOÀN DIỆN - KHAI PHÓNG - TIÊN PHONG - HỘI NHẬP theo mô hình giáo dục khai phóng quốc tế, mục tiêu chương trình đào tạo của Khoa Công nghệ Sinh học là trau dồi cho sinh viên sự phát triển toàn diện về trí tuệ, thể chất, đạo đức, tình cảm, kỹ năng mềm, kiến ​​thức chuyên môn, học tập suốt đời, khả năng lãnh đạo và những phẩm chất cần thiết khác như trách nhiệm công dân, phát triển nguồn nhân lực cho Việt Nam và đóng góp cho nhân loại.</p><h2><strong>1. TẦM NHÌN</strong></h2><p>Khoa Công nghệ Sinh học dẫn đầu về đào tạo, nghiên cứu, chuyển giao công nghệ, trách nhiệm xã hội, và trở thành Khoa nghiên cứu đẵng cấp thế giới vào năm 2030 trong lĩnh vực Công nghệ Sinh học, Công nghệ Thực Phẩm và Hóa sinh Ứng dụng.&nbsp;</p><h2><strong>2. SỨ MẠNG</strong></h2><p>Kiến tạo tri thức và ươm mầm nhân tài cho Việt Nam, khụ vực Châu Á, và thế giới lĩnh vực Công nghệ Sinh học, Công nghệ Thực Phẩm và Hóa sinh Ứng dụng.</p><h2><strong>3. CHIẾN LƯỢC</strong></h2><ul><li>Thúc đẩy sự hội tụ nhân tài của Việt Nam theo định hướng kết hợp giữa học thuật xuất sắc và sáng tạo</li><li>Khoa nghiên cứu cấp khu vực và thế giới, dẫn đầu về kiến ​​tạo tri thức và kinh tế</li><li>Thành lập các phòng thí nghiệm xuất sắc trên cơ sở hợp tác và trao đổi</li></ul><h3><strong>Chiến lược chi tiết:</strong></h3><p><strong>Đối với giáo dục:</strong>&nbsp;(1) Ươm mần nhân tài trong lĩnh vực Công nghệ Sinh học, Công nghệ Thực phẩm và Hóa sinh Ứng dụng; (2) Ươm mầm nhà lãnh đạo trong lĩnh vực Công nghệ Sinh học, Công nghệ Thực phẩm và Hóa sinh Ứng dụng; (3) phát triển và nâng cao năng lực nguồn nhân lực cao trong lĩnh vực Công nghệ Sinh học, Công nghệ Thực phẩm và Hóa sinh Ứng dụng.</p><p><strong>Nghiên cứu:</strong>&nbsp;(1) thúc đẩy các nghiên cứu xuất sắc trong lĩnh vực Công nghệ Sinh học, Công nghệ Thực phẩm và Hóa sinh Ứng dụng; (2) đổi mới sáng tạo và khởi nghiệp; (3) phát triển các dự án có quy mô lớn cấp Quốc gia.</p><p><strong>Hợp tác:</strong>&nbsp;(1) hợp tác toàn cầu và đa dạng; (2) một Khoa luôn chia sẽ và hợp tác.</p><p><strong>Đối với quản lý:</strong>&nbsp;(1) Quản lý tự chủ và có trách nhiệm; (2) Tiên phong cho môi trường giáo dục trong tương lai.</p><h3><strong>Kế hoạch hành động chi tiết cho các chiến lược</strong></h3><h4><strong>a. Giáo dục:</strong></h4><ul><li>Tăng cường đổi mới giảng dạy lấy sinh viên và nhu cầu xã hội làm trung tâm</li><li>Hỗ trợ những mô hình sáng tạo và giáo dục hội tụ</li><li>Môi trường giáo dục tự do và sáng tạo</li><li>Giảng dạy bằng tiếng Anh để ươm mầm tài năng cho Việt nam và khu vực Châu Á</li><li>Tăng cường nỗ lực tuyển dụng những giảng viên xuất sắc</li><li>Tìm kiếm và tuyển chọn những sinh viên tài năng sáng tạo</li></ul><h4><strong>b. Nghiên cứu:</strong></h4><ul><li>Hỗ trợ những dự án nghiên cứu xuất sắc bằng cách tìm kiếm nguồn vốn từ các dự án quốc gia và quốc tế</li><li>Bảo đảm các sinh viên tốt nghiệp và các nhà nghiên cứu xuất sắc</li><li>Thành lập các phòng thí nghiệm liên ngành Nghiên cứu về y sinh học tái tạo, Y sinh học ứng dụng, và công nghiệp an toàn thực phẩm&nbsp;</li><li>Thành lập trung tâm quốc gia bảo tồn nguồn gen động thực vật quý hiếm.&nbsp;&nbsp;</li></ul><h4><strong>c. Hợp tác:</strong></h4><ul><li>Hợp tác nghiên cứu đa ngành đa lĩnh vực, đa dạng hóa giáo dục và hợp tác nghiên cứu, trao đổi sinh viên và văn hoá để ươm mầm lãnh đạo toàn cầu</li><li>Tăng cường hình ảnh Khoa Công nghệ Sinh học đến với học sinh trung học và xã hội</li><li>Mở rộng các chương trình hướng nghiệp đặc biệt cho các trường trung học và trường đại học trong lĩnh vực Công nghệ Sinh học, Công nghệ Thực phẩm và Hóa sinh Ứng dụng&nbsp;</li><li>Mở rộng hợp tác với các cộng đồng học thuật quốc gia và khu vực</li></ul><h4><strong>d. Quản lý:</strong></h4><ul><li>Thiết lập hệ thống quản lý hiệu quả</li><li>Tăng cường đào tạo nhân viên&nbsp;</li><li>Thành lập và vận hành các chương trình phát triển nghề nghiệp cho nhân viên</li><li>Cung cấp các dịch vụ quản trị hướng tới khách hàng</li></ul><p><br></p>","hastag":"","createdate":"20/03/23 23:38:23","latesteditdate":"2023-03-20T23:38:23.32","avatar":"","language":"vn","summary":"","countrow":1}]}');
+        let sessionpost = localStorage.getItem("sessionpost");
+        localStorage.removeItem("sessionpost");
+        // form database 
+        if (sessionpost === null || sessionpost === undefined) {
+            let req = {};
+            let menuid = getUrlParameter("menu-id");
+            let postid = getUrlParameter("post-id");
+            let tablename = getUrlParameter("table-name");
+            let lang = localStorage.getItem('lang');
+            req.lang = lang;
+            if (postid !== false && postid !== null && postid !== "") {
+                req.loai = 62;
+                if (postid !== false && postid !== null && postid !== "" && tablename === "blogs")
+                    req.loai = 63;
+                req.postid = postid;
+                $('#single-post #direct').css('display', 'flex');
+            }
+            else {
+                req.loai = 6;
+                req.sotrang = 1;
+                req.soitem = 1;
+                req.menuid = menuid;
+                $('#single-post #direct').hide();
+            }
+            // get newest post in menuid by lang
+            $.ajax({
+                type: 'POST',
+                url: uri_api + "store/StoredProcedure",
+                data: JSON.stringify(req),
+                dataType: "json",
+                contentType: "application/json",
+                success: function (su) {
+                    if (su.message === "success") {
+                        if (su.responses.length > 0) {
+                            setPostContent(su.responses[0]);
+                        }
+                    }
+                },
+                error: function (er) {
+                    console.log(er)
+                }
+            });
+        }
+        else {
+            let su = JSON.parse(sessionpost);
+            if (su.message === "success") {
+                if (su.responses.length > 0) {
+                    setPostContent(su.responses[0]);
+                }
+            }
+        }
+    }
+
+    function setPostContent(p) {
+        let html = `<div postid="${p.id}">`;
+        html += `<p class="title" id="title">${p.title}</p>`;
+        // html += `<p id="date">${p.createdate}</p>`;
+        html += `<div class="content sun-editor-editable" postid="${p.id}">${p.articlecontent}</div>`;
+        html += `</div>`;
+        $('#single-post #content').html(html);
+        let prev = 0;
+        let prevtitle = "";
+        if (p.prev !== 0) {
+            prev = p.prev;
+            prevtitle = p.prevtitle;
+        }
+        $('#single-post #direct #prev').attr('postid', prev);
+        $('#single-post #direct #prev span.title').text(prevtitle);
+        let next = 0;
+        let nexttitle = "";
+        if (p.next !== 0) {
+            next = p.next;
+            nexttitle = p.nexttitle;
+        }
+        $('#single-post #direct #next').attr('postid', next);
+        $('#single-post #direct #next span.title').text(nexttitle);
+    }
+</script>

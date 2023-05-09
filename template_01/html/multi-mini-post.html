@@ -1,0 +1,110 @@
+<!-- <link href="template_01/css/shared.css?v=1.0.0.16" rel="stylesheet" /> -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" /> -->
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script> -->
+<!-- <script src="template_01/js/lang.js"></script> -->
+<!-- <script src="template_01/js/sitemap.js"></script> -->
+<!-- <script src="template_01/js/data_index.js"></script> -->
+
+<style>
+    #multi-mini-post-page {
+        text-align: justify;
+    }
+
+    #multi-mini-post-page .pages {
+        justify-content: flex-end;
+    }
+
+    #multi-mini-post-page .btn-page {
+        padding: 0 1em;
+    }
+
+    #multi-mini-post-page .btn-page:hover {
+        cursor: pointer;
+        color: var(--color-dynamic-3);
+    }
+
+    #multi-mini-post-page img:not(.content img) {
+        width: 100%;
+        height: auto;
+        max-height: 12em;
+        object-fit: cover;
+    }
+
+    #multi-mini-post-page #content {
+        color: var(--color-dynamic-1);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    #multi-mini-post-page #content>div {
+        min-width: 25%;
+        max-width: calc(30% - 2em);
+        margin: 1em;
+        padding: 1em;
+        flex: 1;
+        background-color: var(--gray-blur-50);
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        border-bottom-right-radius: 1em;
+        border-top-left-radius: 1em;
+    }
+
+    @media only screen and (max-width: 992px) {
+        #multi-mini-post-page #content {
+            flex-direction: column;
+        }
+
+        #multi-mini-post-page #content>div {
+            min-width: auto;
+            max-width: unset !important;
+        }
+    }
+
+    #multi-mini-post-page #content .title {
+        font-size: 1em;
+        color: var(--color-dynamic-1);
+    }
+
+    #multi-mini-post-page #content .date {
+        font-size: 0.8em;
+        text-align: right;
+    }
+
+    #multi-mini-post-page .content-post>div:not(:last-child) {
+        margin: 1em 0;
+    }
+
+    #multi-mini-post-page #content .read-more {
+        font-size: 0.8em;
+        color: #0000EE;
+        text-align: right;
+    }
+
+    #multi-mini-post-page .read-more:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+</style>
+
+<div id="multi-mini-post-page" class="divcontent">
+    <div class="cls-flex pages">
+        <div id="left" class="btn-page"><i class="fa-solid fa-chevron-left"></i></div>
+        <div><span relg="page">Trang</span>: <span id="current-page-post">1</span><span id="number-of-post"></span>
+        </div>
+        <div id="right" class="btn-page"><i class="fa-solid fa-chevron-right"></i></div>
+    </div>
+    <div id="content"></div>
+</div>
+
+<script>
+    var soitem = 9;
+    $(function () {
+        let menuid = getUrlParameter("menu-id");
+        let lang = localStorage.getItem('lang');
+        let el_name = 'multi-mini-post-page';
+        let ob = loadMultiPost(1, el_name, menuid, lang, true);
+        loadCountRow(ob.data, el_name, menuid, lang);
+        loadLang(lang);
+    });
+</script>

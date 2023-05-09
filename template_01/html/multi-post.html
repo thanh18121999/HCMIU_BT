@@ -1,0 +1,98 @@
+<!-- <link href="template_01/css/shared.css?v=1.0.0.16" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" /> -->
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script> -->
+<!-- <script src="template_01/js/sitemap.js"></script> -->
+
+<style>
+    #multi-post-page {
+        text-align: justify;
+    }
+
+    #multi-post-page .pages {
+        justify-content: flex-end;
+    }
+
+    #multi-post-page .btn-page {
+        padding: 0 1em;
+    }
+
+    #multi-post-page .btn-page:hover {
+        cursor: pointer;
+        color: var(--color-dynamic-3);
+    }
+
+    #multi-post-page img:not(.content img) {
+        width: 100%;
+        height: auto;
+        max-height: 12em;
+        object-fit: cover;
+    }
+
+    #multi-post-page #content>div {
+        margin: 1em;
+        padding: 1em;
+        border-bottom: var(--border);
+    }
+
+    #multi-post-page #content .title {
+        font-size: 1em;
+        color: var(--color-dynamic-1);
+    }
+
+    #multi-post-page #content .date {
+        font-size: 0.8em;
+        text-align: right;
+    }
+
+    #multi-post-page .content-post>div:not(:last-child) {
+        margin: 1em 0;
+    }
+
+    #multi-post-page #content .read-more {
+        font-size: 0.8em;
+        color: #0000EE;
+        text-align: right;
+    }
+
+    #multi-post-page .read-more:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    #multi-post-page .menu-name{
+        display: none;
+    }
+</style>
+
+<div id="multi-post-page" class="divcontent">
+    <div class="title menu-name"></div>
+    <div class="menu-name"><hr></div>
+    <div id="content"></div>
+    <div class="cls-flex pages">
+        <div id="left" class="btn-page"><i class="fa-solid fa-chevron-left"></i></div>
+        <div><span relg="page">Trang</span>: <span id="current-page-post">1</span><span id="number-of-post"></span>
+        </div>
+        <div id="right" class="btn-page"><i class="fa-solid fa-chevron-right"></i></div>
+    </div>
+</div>
+
+<script>
+    var soitem = 9;
+    $(function () {
+        let menuid = getUrlParameter("menu-id");
+        let lang = localStorage.getItem('lang');
+        let el_name = 'multi-post-page';
+        let menutitle = $(`#menu div#${menuid}`).attr('menutitle');
+        if (menutitle !== "off") {
+            let menuname = $(`#menu div#${menuid}`).text();
+            $(`#${el_name} .title.menu-name`).text(menuname);
+            $(`#${el_name} .menu-name`).show();
+        }
+        let menurelg = $(`#menu div#${menuid}`).attr('relg');
+        $('#menu-name').attr('relg', menurelg);
+        let ob = loadMultiPost(1, el_name, menuid, lang);
+        loadCountRow(ob.data, el_name, menuid, lang);
+        loadLang(lang);
+    });
+</script>

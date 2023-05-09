@@ -1,0 +1,72 @@
+@media only screen and (max-width: 992px) {
+    #banner #banner_slide #event_content {
+        flex-direction: column;
+    }
+    
+    #banner #banner_slide #event_content.cls-flex > div{
+        margin: 1em 0;
+    }
+    
+    #department.cls-flex {
+        flex-direction: column;
+    }
+
+    #promo > div:first-child {
+        padding: 1em;
+        width: auto;
+    }
+
+    #promo.cls-flex {
+        flex-direction: column;
+    }
+
+    #promo .h2::before{
+        display: none;
+    }
+
+    #research > div:first-child #white{
+        height: 0;
+    }
+
+    #research > div#content img{
+        right: 1.5em;
+    }
+
+    #research > div#content{
+        position: unset;
+    }
+
+    #event{
+        margin: 0;
+        /* background-size: 100% auto; */
+        display: block;
+    }
+
+    #event div#title{
+        font-size: 1.2em;
+        text-align: center;
+    }
+
+    #event #img{
+        text-align: center;
+    }
+
+    #event img#logo{
+        width: 150px;
+        margin: 0 auto;
+    }
+
+    #news .content.cls-flex{
+        flex-direction: column;
+    }
+/* 
+    #news .button {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+    } */
+
+    #news div.text-title{ 
+        min-height: auto;
+    }
+} 

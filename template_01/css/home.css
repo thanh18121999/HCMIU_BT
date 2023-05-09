@@ -1,0 +1,324 @@
+#banner #banner_img {
+    height: 290px;
+}
+
+#banner #banner_img img {
+    height: 100%;
+}
+
+#banner #banner_slide {
+    text-align: center;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+}
+
+#banner #banner_slide #event_content {
+    background-color: var(--color-dynamic-3-blur-50);
+    border: var(--border);
+    border-style: dashed;
+    border-color: var(--white);
+    border-left: 0;
+    border-right: 0;
+    padding: 0.4em 0;
+    font-weight: bold;
+    /* border-width: 0.8em; */
+    /* background-image: linear-gradient(var(--color-dynamic-1), var(--color-dynamic-3-blur-50)); */
+}
+
+#banner #banner_slide #event_content > div {
+    flex: 1;
+    font-size: 1.8em;
+    text-transform: uppercase !important;
+    color: var(--darkgray);
+    text-shadow: -1px -1px 0 var(--color-dynamic-4), 1px -1px 0 var(--color-dynamic-4), -1px 1px 0 var(--color-dynamic-4), 1px 1px 0 var(--color-dynamic-4);
+}
+
+#banner #banner_slide #event_content > div:hover {
+    cursor: pointer;
+    color: var(--color-dynamic-2);  
+    text-shadow: -1px -1px 0 var(--color-dynamic-1), 1px -1px 0 var(--color-dynamic-1), -1px 1px 0 var(--color-dynamic-1), 1px 1px 0 var(--color-dynamic-1);  
+}
+
+#banner #banner_slide #event_content img {
+    height: auto;
+    width: 3em;
+}
+
+#department {
+    padding-top: 3rem;
+    padding-bottom: 0;
+    padding-bottom: 1rem;
+}
+
+#department > div {
+    background-color: var(--gray);
+    color: var(--color-dynamic-1);
+    padding: 3em 1em;
+    text-align: center;
+    flex: 1;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+#department > div:hover {
+    cursor: pointer;
+    color: var(--color-dynamic-2);
+}
+
+#department > div[webpage="true"] > * {
+    display: block !important;
+}
+
+#department [webpage="true"]:before {
+    content: unset;
+}
+
+
+#department .icon {
+    font-size: 50px;
+    font-weight: normal !important;
+}
+
+#department .department-title {
+    margin-top: 1.5em;
+    text-transform: capitalize;
+}
+
+#promo {
+    position: relative;
+}
+
+#promo .h2 {
+    text-transform: uppercase;
+}
+
+#promo > div:first-child {
+    width: 50%;
+    background-color: var(--color-dynamic-1);
+    position: relative;
+    color: var(--white);
+    margin-right: 0 !important;
+    padding: 5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#promo #promo_1_background{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    object-fit: contain;
+    opacity: 0.1;
+}
+
+#promo > div:first-child > div {
+    font-size: 1.5em;
+    margin: 1em;
+}
+
+#promo .h2::after {
+    display: block;
+    content: '';
+    height: 7px;
+    background: var(--color-dynamic-2);
+    position: absolute;
+    margin-top: 0.5em;
+    left: 0;
+    right: 5em;
+}
+
+#promo .h2::before {
+    display: block;
+    content: '';
+    background: var(--color-dynamic-2);
+    height: 31px;
+    width: 7px;
+    position: absolute;
+    right: 5em;
+    margin-top: 0.5em;
+}
+
+#promo > div:last-child {
+    flex: 1;
+    border: var(--border);
+    border-color: var(--color-dynamic-1);
+    border-width: 3px;
+}
+
+#promo #content {
+    font-size: 1.3em;
+    text-align: justify;
+}
+
+#promo #btnEnjoin{
+    z-index: 1;
+}
+
+#promo button {
+    font-size: 0.6em;
+    padding: 0.5em;
+    background-color: transparent;
+    color: var(--white);
+    border: var(--border);
+    border-width: 3px;
+    border-color: var(--white);
+    width: 100%;
+    z-index: 1;
+    text-transform: uppercase;
+}
+
+#promo button:hover {
+    border-color: var(--color-dynamic-2);
+}
+
+#research {
+    background-color: var(--color-dynamic-1);
+    padding-bottom: 3em;
+    position: relative;
+    margin-top: 3rem;
+}
+
+#research > div:first-child {
+    width: 25em;
+    margin: 0 !important;
+}
+
+#research #green {
+    position: relative;
+}
+
+#research > div:last-child {
+    flex: 1;
+    border-right: 3px solid var(--color-dynamic-1);
+    border-top: 3px solid var(--color-dynamic-1);
+}
+
+#research > div:first-child #white {
+    background-color: var(--white);
+    height: 10em;
+}
+
+#research > div#content {
+    position: absolute;
+    top: 3em;
+    left: 10em;
+    background-color: var(--white);
+    border: var(--border);
+    border-color: var(--color-dynamic-2);
+    border-width: 0.3em;
+    padding: 0.6em;
+    min-height: 10em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-transform: capitalize;
+    max-width: 40em;
+}
+
+#research > div#content > div:not(.title) {
+    font-size: 1.2em;
+    text-align: justify;
+    margin: 1em 3em 1em 1em;
+    text-transform: none;
+}
+
+#research > div#content img {
+    position: absolute;
+    width: 20%;
+    height: auto;
+    top: -2em;
+    right: -3em;
+}
+
+#event {
+    margin: 6rem 0 2rem 0;
+    background-image: url("../imgs/event.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#event div#title {
+    flex: 1;
+    white-space: nowrap;
+    color: var(--white);
+    font-weight: bold;
+    font-size: 3.5em;
+    text-shadow: -3px -3px 0 var(--color-dynamic-3), 3px -3px 0 var(--color-dynamic-3), -3px 3px 0 var(--color-dynamic-3), 3px 3px 0 var(--color-dynamic-3);
+}
+
+#event img#logo {
+    width: 150px;
+    height: auto !important;
+    opacity: 0.7;
+}
+
+#news{
+    color: var(--color-dynamic-1);
+}
+
+#news .content.cls-flex > div{
+    flex: 1;
+}
+
+#news div.button {
+    font-size: 1em !important;
+}
+
+#news div.sub-content {
+    margin: 0.5em 1em;
+    flex: 1;
+    border-bottom-left-radius: 0.6em;
+    border-bottom-right-radius: 0.6em;
+    background-color: var(--gray-blur-50);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    min-height: 15em;
+}
+#news div.sub-content:hover{
+    cursor: pointer;
+}
+
+#news div.sub-content {
+    text-align: justify;
+}
+
+#news div.sub-content:hover div.text-title,
+#news div.sub-content:hover div.text-content {
+    color: var(--color-dynamic-2);
+}
+
+#news div.text-type {
+    font-weight: bold;
+    background-color: var(--color-dynamic-1);
+    color: var(--white);
+    margin: 0.3em 0;
+    padding: 0.1em 0.3em;
+    width: 35%;
+}
+
+#news div.text-title {
+    font-weight: bold;
+    min-height: 3.6em;
+    padding: 0.3em 0.8em;
+    font-size: 1.2em;
+}
+
+#news div.text-content {
+    padding: 0 0.8em 0.8em 0.8em;
+}
+
+#news div.avatar {
+    height: 12em;
+}
+
+#news div.avatar > img {
+    width: 100%;
+    height: 100% !important;
+    object-fit: cover;
+}

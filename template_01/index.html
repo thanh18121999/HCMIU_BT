@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khoa Công Nghệ Sinh Học - Đại Học Quốc Tế</title>
+    <!-- <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <link href="template_01/css/animate.css" rel="stylesheet" />
+    <link href="template_01/css/shared.css?v=1.0.0.19" rel="stylesheet" />
+    <link href="template_01/css/menu.css?v=1.0.0.19" rel="stylesheet" />
+    <link href="template_01/css/style.css?v=1.0.0.19" rel="stylesheet" />
+    <link href="template_01/css/style992.css?v=1.0.0.19" rel="stylesheet" />
+</head>
+<style>
+</style>
+
+<body>
+    <div id="spinner">
+        <img src="template_01/imgs/icon/spinner.gif">
+    </div>
+    <div class="cls-flex" id="menu-mini">
+        <div id="menu-bar">
+            <div><i class="fa-solid fa-bars"></i></div>
+        </div>
+
+        <div id="menu-bar-content" class="cls-menu">
+            <div class="btn-close"><i id="menu-bar-close" class="fa-solid fa-xmark"></i></div>
+        </div>
+        <div class="cls-flex" id="menu-lang">
+            <div class="cls-flex flag-lang" lang="vn">
+                <div><img src="template_01/imgs/icon/vietnamese.png" /></div>
+                <div class="title-lang">Tiếng Việt</div>
+            </div>
+            <div class="cls-flex flag-lang" lang="en">
+                <div><img src="template_01/imgs/icon/english.png" /></div>
+                <div class="title-lang">English</div>
+            </div>
+        </div>
+        <div id="btnLogin" title="Đăng Nhập/Login" href="/admin" target="_tab"><i class="fa-solid fa-circle-user"></i>
+        </div>
+    </div>
+    <div id="menu" class="cls-flex green cls-menu">
+        <div id="logo" class="cls-flex my-class">
+            <div class="cls-flex">
+                <div id="img-logo">
+                    <div>
+                        <img class="imgLogoLoad" id="logo_school_group" target="_tab" href="https://vnuhcm.edu.vn/" />
+                    </div>
+                    <div class="cls-flex">
+                        <img class="imgLogoLoad" id="logo_school" target="_tab" href="https://hcmiu.edu.vn/" />
+                        <img class="imgLogoLoad" id="logo" html="true" page="home" />
+                    </div>
+                </div>
+                <div id="title-logo">
+                    <div id="title-truong" target="_tab" href="https://hcmiu.edu.vn/"><span relg="school">TRƯỜNG ĐẠI HỌC
+                            QUỐC TẾ</span> - <span relg="school-group">ĐẠI HỌC QUỐC GIA THÀNH PHỐ HỒ CHÍ MINH</span>
+                    </div>
+                    <div id="title-khoa" relg="name" html="true" page="home">KHOA CÔNG NGHỆ SINH HỌC</div>
+                    <div id="title-subpage"></div>
+                </div>
+            </div>
+            <div id="title-chungnhan" class="cls-flex">
+                <div><img src="template_01/imgs/icon/icon_1.png"></div>
+                <div><img src="template_01/imgs/icon/icon_2.png"></div>
+                <div><img src="template_01/imgs/icon/icon_3.png"></div>
+            </div>
+        </div>
+        <div id="sub-menu" class="menu">
+            <div id="menu-map" class="cls-flex">
+                <!-- <div relg="portal">Cổng Thông Tin</div> -->
+                <div relg="search">Tìm Kiếm</div>
+                <div id="articles" page="search" menu="search" html="true"><i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+            <div id="menu-part" class="cls-flex menu-part">
+                <div class="menu-part-level1 cls-flex"></div>
+            </div>
+        </div>
+    </div>
+    <!-- content page -->
+    <div id="content-page"></div>
+    <!-- content page -->
+    <footer class="content-padding">
+        <div id="footer-1" class="cls-flex">
+            <div>
+                <div id="div-contact" class="cls-flex">
+                    <div id="btn-zalo"><img src="template_01/imgs/icon/zalogroup.png"></div>
+                    <div class="title" relg="contact">LIÊN HỆ</div>
+                </div>
+                <div relg="contact-name">Trường đại học quốc tế - khoa công nghệ sinh học</div>
+                <div><i class="fa-solid fa-phone"></i>(+84) <a href="tel:02837244270">028 3724 4270</a> - Ext.:
+                    3233
+                </div>
+                <div><i class="fa-solid fa-envelope"></i><a href="mailto:biotech@hcmiu.edu.vn">biotech@hcmiu.edu.vn</a>
+                </div>
+                <div><i class="fa-solid fa-location-dot"></i> <span target="_tab"
+                        href="https://goo.gl/maps/nP1pLSTaRFcqMLc66" relg="address-text">Khu phố 6, phường Linh
+                        Trung, TP. Thủ Đức, TP. HCM</span></div>
+                <div><i class="fa-brands fa-facebook"></i><span target="_tab"
+                        href="https://www.facebook.com/iu.biotechnology?mibextid=ZbWKwL">IU Biotechnology</span>
+                </div>
+            </div>
+            <div id="map-link">
+                <div class="title" relg="links">LIÊN KẾT</div>
+                <div id="map-link-content"></div>
+            </div>
+            <div id="gg-map">
+                <iframe class="sizeMap"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d236702.4171168558!2d106.61936338902065!3d10.857259797788176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d8a415a9d221%3A0x550c2b41569376f9!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBRdeG7kWMgVOG6vyAtIMSQ4bqhaSBo4buNYyBRdeG7kWMgZ2lhIFRQLkhDTQ!5e0!3m2!1svi!2s!4v1672287837662!5m2!1svi!2s"
+                    style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+        <div id="footer-2"><i class="fa-regular fa-copyright"></i> by PhucKhangNet co. Truong Dai Hoc Quoc Te - Khoa
+            Cong Nghe Sinh Hoc</div>
+    </footer>
+    <div id="btn-scroll"><i class="fa-solid fa-angle-up"></i></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+    <script src="config/config.js?v=1.0.0.19" type="text/javascript"></script>
+    <script src="template_01/js/lang.js?v=1.0.0.19" type="text/javascript"></script>
+    <script src="template_01/js/sitemap.js?v=1.0.0.19" type="text/javascript"></script>
+    <script src="template_01/js/data_index.js?v=1.0.0.19" type="text/javascript"></script>
+    <script src="template_01/js/index.js?v=1.0.0.19" type="text/javascript"></script>
+</body>

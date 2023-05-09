@@ -1,0 +1,207 @@
+<!-- <link href="template_01/css/shared.css?v=1.0.0.16" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" /> -->
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script> -->
+<!-- <script src="template_01/js/sitemap.js"></script> -->
+
+<style>
+    #search-page {
+        text-align: justify;
+    }
+
+    #search-page #search {
+        margin-bottom: 2em;
+    }
+
+    #search-page #search #first {
+        flex: 1;
+    }
+
+    #search-page #search input {
+        width: 100%;
+        border: none;
+        border-bottom: var(--border);
+        border-bottom-color: var(--color-dynamic-1);
+        border-bottom-width: 2px;
+        padding: 0.5em 1em;
+    }
+
+    #search-page #search #second {
+        font-size: 1.5em;
+    }
+
+    #search-page #search #second:hover {
+        cursor: pointer;
+        color: var(--color-dynamic-1);
+    }
+
+    #search-page #search input:focus {
+        outline: none;
+    }
+
+    #search-page .pages {
+        justify-content: center;
+    }
+
+    #search-page .btn-page {
+        padding: 0 1em;
+    }
+
+    #search-page .btn-page:hover {
+        cursor: pointer;
+        color: var(--color-dynamic-3);
+    }
+
+    #search-page img:not(.content img) {
+        width: 100%;
+        height: auto;
+        max-height: 12em;
+        object-fit: cover;
+    }
+
+    #search-page #sumrecord {
+        text-transform: uppercase;
+        font-size: 1em;
+        color: var(--color-dynamic-1);
+        text-align: right;
+    }
+
+    #search-page #content {
+        min-height: 50em;
+    }
+
+    #search-page #content>div {
+        margin: 0.3em;
+        padding: 1em;
+    }
+
+    #search-page #content .title {
+        color: var(--color-dynamic-1);
+        margin-bottom: 0.5em;
+        text-decoration: underline;
+    }
+
+    #search-page #content .title:hover {
+        cursor: pointer;
+    }
+</style>
+
+<div id="search-page" class="divcontent">
+    <div id="search" class="cls-flex">
+        <div id="first"><input id="txtKeyWord" maxlength="150" /></div>
+        <div id="second"><i class="fa-solid fa-magnifying-glass"></i></div>
+    </div>
+    <div id="sumrecord" class="title"><span>tổng cộng: </span><span id="sumofrecord">0</span><span> kết quả</span></div>
+    <div id="content"></div>
+    <div class="cls-flex pages">
+        <div id="left" class="btn-page"><i class="fa-solid fa-chevron-left"></i></div>
+        <div><span relg="page">Trang</span>: <span id="current-page-post">1</span><span id="number-of-post"></span>
+        </div>
+        <div id="right" class="btn-page"><i class="fa-solid fa-chevron-right"></i></div>
+    </div>
+</div>
+
+<script>
+    var soitem = 10;
+    $(function () {
+        let menuid = getUrlParameter("menu-id");
+        let lang = localStorage.getItem('lang');
+        let menuname = $(`#menu div#${menuid}`).text();
+        $('#menu-name').text(menuname);
+        let menurelg = $(`#menu div#${menuid}`).attr('relg');
+        $('#menu-name').attr('relg', menurelg);
+        // loadSumPost(menuid, lang, 'search-page');
+        // loadMultiPost(1, 'search-page', menuid, lang);
+        setTimeout(function () { $('#txtKeyWord').focus(); }, 1000);
+
+        loadLang(lang);
+    });
+    $('#search-page #search #txtKeyWord').on('keypress', function (e) {
+        if (e.which === 13)
+            $('#search-page #search #second').trigger('click');
+    });
+    $('#search-page #search #second').click(function () {
+        let keyword = $('#search-page #search #txtKeyWord').val();
+        if (keyword !== "") {
+            let el_name = 'search-page';
+            let soitemtong = loadPostSearch(1, 'search-page', keyword, soitem);
+            $(`#sumofrecord`).text(parseInt(soitemtong).toLocaleString());
+            if (soitemtong > 0) {
+                let numberofpost = Math.floor(parseInt(soitemtong) / soitem);
+                if ((soitemtong % parseFloat(soitem)) > 0) numberofpost++;
+                if (numberofpost > 0) {
+                    $(`#${el_name} #number-of-post`).text(`/` + numberofpost);
+                    $(`#${el_name} #number-of-post`).attr(`value`, numberofpost);
+                }
+
+                $(`#${el_name} .btn-page`).click(function (e) {
+                    let page = parseInt($(`#${el_name} #current-page-post`).text());
+                    let numpage = parseInt($(`#${el_name} #number-of-post`).attr(`value`));
+                    if ($(this).attr(`id`) === "left")
+                        page--;
+                    else page++;
+                    page = (page < 1 ? 1 : page);
+                    page = (page > numpage ? numpage : page);
+                    if (parseInt($(`#${el_name} #current-page-post`).text()) !== page) { }
+                    $(`#${el_name} #current-page-post`).text(page);
+                    loadPostSearch(page, el_name, $('#search-page #search #txtKeyWord').val(), soitem);
+                });
+            }
+        }
+    });
+    function loadPostSearch(page, el_name, keyword, soitem) {
+        let dtpage = [];
+        $.ajax({
+            type: 'POST',
+            url: uri_api + "store/StoredProcedure",
+            data: JSON.stringify({
+                "loai": 7,
+                "sotrang": page,
+                "soitem": soitem,
+                "keyword": keyword,
+            }),
+            async: false,
+            globle: false,
+            dataType: "json",
+            contentType: "application/json",
+            success: function (su) {
+                if (su.message === "success") {
+                    dtpage = su.responses;
+                }
+            },
+            error: function (er) {
+                console.log(er)
+            }
+        });
+        let soitemtong = 0;
+        if ($(`#${el_name} #content`).length === 0) console.log("Can't load: " + el_name)
+        else {
+            soitemtong = dtpage[0].countrow;
+            $(`#${el_name} #content`).html('');
+            $.each(dtpage, function (i, p) {
+                let content = p.articlecontent;
+                let cutcontent = false;
+                if ($(p.articlecontent).length > 0)
+                    content = $(p.articlecontent).text();
+                if (content.length > 450) {
+                    content = content.substr(0, 450);
+                    cutcontent = true;
+                }
+                if (content.lastIndexOf('.') > -1) {
+                    content = content.substr(0, content.lastIndexOf('.') + 1);
+                    cutcontent = true;
+                }
+
+                let html = `<div class="content-post">`;
+                html += `<div class="title" single="true" tablename="${p.tablename}" postid="${p.id}">${p.title}</div>`;
+                html += `<div class="content" postid="${p.id}">${content}</div>`;
+                html += `<div class="contenthtml" style="display: none !important;" postid="${p.id}">${p.articlecontent}</div>`;
+                html += `</div>`;
+                $(`#${el_name} #content`).append(html);
+                if (i === 0) firstid = p.id;
+            });
+            functionEventCall(el_name);
+        }
+        return soitemtong;
+    }
+</script>

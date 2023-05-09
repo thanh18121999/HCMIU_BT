@@ -1,0 +1,120 @@
+@media only screen and (max-width: 992px) {
+    .cls-flex>div:not(:last-child) {
+        margin-right: 0;
+    }
+
+    #menu-mini #menu-bar {
+        display: block !important;
+        text-align: center;
+        border-radius: 0.2em;
+        padding: 0.5em;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+    }
+
+    #menu-bar:hover {
+        background-color: var(--color-dynamic-2);
+        cursor: pointer;
+    }
+
+    #menu-mini #menu-bar-content {
+        display: none;
+        position: fixed;
+        z-index: 2;
+        left: 0;
+        right: 0;
+
+        top: 0;
+        bottom: 0;
+
+        text-align: left;
+        font-weight: bold;
+        background-color: var(--color-dynamic-3-blur-95);
+        /* background-color: var(--color-dynamic-3); */
+        color: var(--color-dynamic-1);
+        padding: 0.8em;
+        font-size: 1.8em;
+
+        overflow-y: scroll;
+
+        scrollbar-color: var(--color-dynamic-3-blur-50) var(--white);
+        scrollbar-width: thin !important;
+    }
+
+    #menu-mini div.menu-item {
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+    }
+
+    #menu-mini div.menu-item:hover {
+        cursor: pointer;
+        color: var(--white);
+    }
+
+    #menu-mini #menu-bar-content .btn-close {
+        position: absolute;
+        top: 1em;
+        right: 2em;
+    }
+
+    #menu-mini #menu-bar-content .btn-close:hover {
+        cursor: pointer;
+    }
+
+    #menu-mini #menu-bar-content i#menu-bar-close {
+        color: rgb(182, 175, 175);
+    }
+
+    #menu-mini #menu-bar-content .menu-part-level1>div>span {
+        font-size: 0.8em;
+    }
+
+    #menu-mini #menu-bar-content .menu-part-level1>div>span {
+        text-transform: uppercase;
+    }
+
+    #menu-mini #menu-bar-content .menu-part-level1>div>span,
+    #menu-mini #menu-bar-content .menu-title-under>span {
+        color: var(--white);
+        pointer-events: none;
+    }
+
+    #menu-mini #menu-bar-content div[page="home"] {
+        display: none;
+    }
+
+    #menu-mini #menu-bar-content #menu-bar-close:hover {
+        color: #000;
+    }
+
+    #menu-mini #menu-bar-content .menu-part-level2 {
+        font-size: 0.68em;
+        padding-left: 0.8em;
+        border-left: 0.1em solid var(--color-dynamic-1);
+        border-left-style: dotted;
+    }
+
+    #menu-mini #menu-bar-content .menu-part-level3 {
+        font-size: 1em;
+        padding-left: 0.8em;
+        border-left: 0.1em solid var(--color-dynamic-1);
+        border-left-style: dotted;
+    }
+
+    #menu #sub-menu #menu-part {
+        display: none !important;
+    }
+
+    #menu #logo #title-logo>div#title-khoa {
+        white-space: unset;
+    }
+
+    footer #footer-1.cls-flex {
+        flex-direction: column;
+    }
+    footer #footer-1 div#gg-map {
+        margin: 0;
+    }
+}
